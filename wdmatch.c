@@ -12,31 +12,33 @@ void	ft_putstr(char *str)
 	}
 }
 
-int	main(int argc, char **argv)
+int	wdmatch(char **argv)
 {
 	int	i;
 	int	j;
-	int	found;
-	
+
 	i = 0;
 	j = 0;
-	found = 1;
+	while (argv[1][i])
+	{
+		if (argv[2][j] != argv[1][i])
+		{
+			if (!(argv[2][j]))	
+				return (0);
+		}
+		else
+			i++;
+		j++;
+	}
+	return (1);
+}
+
+
+int	main(int argc, char **argv)
+{
 	if (argc == 3)
 	{
-		while (argv[1][i])
-		{
-			if (argv[2][j] != argv[1][i])
-			{
-				j++;
-				if (!(argv[2][j]))
-				{	
-					found = 0;
-					break;
-				}
-			}
-			i++;
-		}
-		if (found == 1)
+		if (wdmatch(argv))
 			ft_putstr(argv[1]);
 	}
 	write(1, "\n", 1);
